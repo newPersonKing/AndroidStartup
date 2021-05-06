@@ -98,11 +98,15 @@ public class StartupProcessor extends BaseProcessor {
                 .addModifiers(Modifier.PUBLIC)
                 .returns(TYPE_NAME_LIST_OF_SCHEDULER_JOB)
                 .addAnnotation(Override.class);
+        /*给方法 "hunt" 中添加逻辑代码*/
+        /*每一个$T 代表需要一个参数 */
         builder.addStatement("List<$T> jobs = new $T<>()", CLASS_NAME_I_SCHEDULER_JOB, CLASS_NAME_ARRAY_LIST);
+        /*AnnotatedClass 包含注解的每一个 job*/
         for (AnnotatedClass annotatedClass : map.values()) {
             builder.addStatement("jobs.add(new $T())", annotatedClass.getClassName());
         }
         builder.addStatement("return jobs");
+        /*创建class JobHunterImpl*/
         TypeSpec hunterImplClass = TypeSpec.classBuilder("JobHunterImpl")
                 .addModifiers(Modifier.PUBLIC)
                 .addSuperinterface(TypeUtils.CLASS_NAME_JOB_HUNTER)

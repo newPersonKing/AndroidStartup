@@ -74,6 +74,8 @@ class AndroidStartup constructor(val context: Context) {
                 jobHunter = hunterImplClass.newInstance() as JobHunter
             }
             val jobs = jobHunter?.hunt()
+
+            /*kotlin 把数组展开的写法*/
             jobs?.let { scheduler.jobs(*jobs.toTypedArray()) }
         } catch (e: Exception) {
             e.printStackTrace()

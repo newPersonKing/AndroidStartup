@@ -58,6 +58,7 @@ class Scheduler private constructor() {
 
     /** Launch the scheduler. [context] here should be the global context. */
     fun launch(context: Context) {
+        /*dispatcher 是个单例*/
         dispatcher.dispatch(context, schedulerJobs, executor, logger)
     }
 

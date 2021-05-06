@@ -14,8 +14,8 @@ dependencies {
     implementation  'com.squareup:javapoet:1.8.0'
     annotationProcessor 'com.google.auto.service:auto-service:1.0-rc7'
     compileOnly 'com.google.auto.service:auto-service-annotations:1.0-rc7'
-//    compile project(path: ':startup-annotation')
-    implementation  'com.github.Shouheng88:startup-annotation:1.0'
+    compile project(path: ':startup-annotation')
+//    implementation  'com.github.Shouheng88:startup-annotation:1.0'
 }
 
 task androidSourcesJar(type: Jar) {
@@ -98,21 +98,7 @@ publishing {
             }
         }
     }
-    // 定义发布到哪里
-    repositories {
-        maven {
-            def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-            // You only need this if you want to publish snapshots, otherwise just set the URL
-            // to the release repo directly
-            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-            credentials {
-                // 这里就是之前在 issues.sonatype.org 注册的账号
-                username ossrhUsername
-                password ossrhPassword
-            }
-        }
-    }
+
 }
 
 signing {

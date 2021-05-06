@@ -37,10 +37,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     // modules
-//    implementation project(path: ':scheduler')
-    api 'com.github.Shouheng88:scheduler:1.0'
-//    api project(path: ':startup-annotation')
-    api 'com.github.Shouheng88:startup-annotation:1.0'
+    api project(path: ':scheduler')
+//    api 'com.github.Shouheng88:scheduler:1.0'
+    api project(path: ':startup-annotation')
+//    api 'com.github.Shouheng88:startup-annotation:1.0'
 }
 
 task androidSourcesJar(type: Jar) {
@@ -120,18 +120,7 @@ publishing {
     }
     // 定义发布到哪里
     repositories {
-        maven {
-            def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-            // You only need this if you want to publish snapshots, otherwise just set the URL
-            // to the release repo directly
-            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-            credentials {
-                // 这里就是之前在 issues.sonatype.org 注册的账号
-                username ossrhUsername
-                password ossrhPassword
-            }
-        }
+      
     }
 }
 
